@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/*@import url('https://fonts.googleapis.com/css?family=Merriweather|Roboto+Slab');*/
+@font-face{
+    font-family: "font";
+    src: url("_fonts/Merriweather-Regular.ttf")
+}
+@font-face{
+    font-family: "font2";
+    src: url("_fonts/Raleway-Medium.ttf")
+}
+
+body{
+    background-color: #d8d8d8;
+    font-family: 'font', serif;
+}
+
+input{
+    background-color: #FFFFFF;
+    margin: 5px auto;
+    border-width: 0;
+    padding: 10px;
+    font-family: "font";
+    border: black;
+}
+
+a#abutton{
+    text-decoration: none;
+    margin: 5px auto;
+    border-width: 0;
+    padding: 10px;
+    font-family: "font";
+    color: #a835b7
+}
+
+form{
+    text-align: center;
+}
+
+div#box{
+    font-size: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: justify;
+    display:block;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+div#box p{
+    text-indent: 30px;
+}
+
+.textclass{
+    text-align: justify;
+    text-indent: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    width: 800px
+}
+
+hgroup{
+    text-align: center
+}
+
+
+.topnav {
+    background-color: #d8d8d8;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: black;
+    color: white;
+}
+
+.topnav a.active {
+    background-color: black;
+    color: white;
+}
+
+p a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+p a:hover{
+    text-decoration: underline;
+}
