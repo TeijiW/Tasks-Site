@@ -1,43 +1,18 @@
 <!DOCTYPE html>
-
-<?php
-    require_once("db_connect.php");
-
-    if(isset($_POST["send"])):
-        $errors = array();
-        $dbmat = mysqli_escape_string($connect, $_POST["mat"]);
-        $dbwork = mysqli_escape_string($connect, $_POST["work"]);
-        $dbdate = mysqli_escape_string($connect, $_POST["date"]);
-
-        if(empty($dbmat) or empty($dbwork) or empty($dbdate)):
-            $errors[] = "Preencha todos os campos <br>";
-        else:
-            $sql = "SELECT * FROM works";
-            $result = mysqli_query($connect, $sql);
-
-            /*if(mysqli_num_rows($result) > 0):
-                $errors[] = "Tarefa já existente <br>";
-            else: 
-                $sql = "INSERT INTO works (mat,homework,dateofworks); VALUES ($dbmat, $dbwork, $dbdate)";
-            endif; */
-            $sql = "INSERT INTO works (mat,homework,dateofworks); VALUES ('MATERIA', $dbwork, $dbdate)";
-            if (mysqli_query($connect, $sql)):
-                echo("Dados inseridos");
-            else:
-                echo("Deu merda");
-            endif;
-        endif;
-    endif;
-        
-?>
 <html lang="pt-br">
 
 <head>
 
     <link rel="stylesheet" href="_css/styles.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">-->
     <meta charset="utf-8"/>
     <title>Random</title>
 </head>
+
+<?php
+    require_once("db_connect.php");
+    require_once("insert.php");
+    ?>
 <body>
     <div>
     <header>
@@ -59,12 +34,32 @@ Nesse site, você pode checar quais trabalhos ou tarefas a turma 7131.2A de Info
 <br>
 <div id="box">
 <br>
-    <?php
-       $sql = "SELECT * FROM works";
-       $result = mysqli_query($connect, $sql);
-       $dates = mysqli_fetch_array($result);
-       echo $dates;
-    ?>
+       <table style="width:100%">
+            <thead>
+                <tr>
+                    <th>Matéria</th>
+                    <th>Descrição da Tarefa</th>
+                    <th>Data para Entrega</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql = "SELECT * FROM works";
+                $result = mysqli_query($connect, $sql);
+                #if (empty(mysqli_fetch_array($result))){
+                 #   echo "Vazio";
+                 #   }
+                while($data = mysqli_fetch_array($result)){
+                ?>
+                <tr>
+                    <td><?php echo $data['mat']; ?></td>
+                    <td><?php echo $data['homework']; ?></td>
+                    <td><?php echo $data['dateofworks']; ?></td>
+                </tr>
+                <?php } ?>
+            </tbody>
+                
+       </table>
 <br>
 </div>
 <hr>
@@ -74,9 +69,10 @@ Nesse site, você pode checar quais trabalhos ou tarefas a turma 7131.2A de Info
     <br>
     <input type="text" name="work" placeholder="Tarefa">
     <br>
-    <input type="text" name="date" placeholder="Data de Entrega">
+    <input type="date" name="date" placeholder="Data de Entrega">
     <br>
     <input type="submit" value="Enviar" name="send">
-</form> 
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </body>
 </html>
